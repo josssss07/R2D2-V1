@@ -1,1 +1,60 @@
-let o,n=`ws://${window.location.hostname}/ws`,e={};const t=[...document.querySelectorAll("input.btn")];function s(){u()}function i(n){o.send(n),document.querySelector("h1").textContent=n}function c(){o.send("s"),document.querySelector("h1").textContent="s"}function u(){console.log("Trying to open a websocket connection:"),o=new WebSocket(n),o.onopen=d,o.onclose=l,o.onmessage=h}function d(){console.log("Connection etablished: "),t.forEach((o=>{o.onmousedown=i.bind(this,o.id),o.ontouchstart=i.bind(this,o.id),"l"==o.id||"r"==o.id?(o.onmouseup=i.bind(this,"ts"),o.onmouseout=i.bind(this,"ts"),o.ontouchmove=i.bind(this,"ts"),o.ontouchend=i.bind(this,"ts")):(o.onmouseup=c,o.onmouseout=c,o.ontouchmove=c,o.ontouchend=c)}))}function l(){console.log("Connection lost: "),setTimeout(u,5e3)}function h(o){console.log("Message received: "),console.log}window.addEventListener("load",s);
+let gateway = `ws://${window.location.hostname}/ws`;
+let websocket;
+let cmdMap = {};
+const inputs = [...document.querySelectorAll("button")];
+
+function onLoad(){
+    initWebSocket();
+}
+window.addEventListener('load', onLoad);
+
+function sendCmd(arg){
+    websocket.send(arg);
+    console.log(arg);
+}
+
+function stop(){
+    websocket.send("s");
+    console.log("s");
+}
+
+function initWebSocket(){
+    console.log("Trying to open a websocket connection:");
+    websocket = new WebSocket(gateway);
+    websocket.onopen = onOpen;
+    websocket.onclose = onClose;
+    websocket.onmessage = onMessage;
+}
+
+function onOpen(){
+    console.log("Connection etablished: ");
+    inputs.forEach(elem => {
+        elem.onmousedown = sendCmd.bind(this, elem.id);
+        elem.ontouchstart = sendCmd.bind(this, elem.id);
+        if (elem.id == "l" || elem.id == "r"){    
+            elem.onmouseup = sendCmd.bind(this, "s");
+            elem.onmouseout = sendCmd.bind(this, "s");
+            elem.ontouchmove = sendCmd.bind(this, "s");
+            elem.ontouchend = sendCmd.bind(this, "s");
+        }
+        else{
+            elem.onmouseup = stop;
+            elem.onmouseout = stop;
+            elem.ontouchmove = stop;
+            elem.ontouchend = stop;
+        }
+    })
+}
+
+
+function onClose(){
+    console.log("Connection lost: ");
+    setTimeout(initWebSocket, 5000);
+}
+
+function onMessage(event){
+    console.log("Message received: ");
+    console.log
+}
+
+// onOpen()

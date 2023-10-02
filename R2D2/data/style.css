@@ -1,0 +1,79 @@
+body{
+  margin:0;
+  padding:0;
+}
+.bigbox{
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+}
+.outer{
+  margin:auto;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap:20px;
+  row-gap: 40px;
+  text-align: center;
+  justify-items: center;
+}
+.container1{  text-align: center; margin: auto;}
+.container2{  text-align: center; margin: auto;}
+.container3{  text-align: center; margin: auto}
+.container4{  text-align: center; margin: auto}
+.container5{  text-align: center; margin:auto;}
+.container6{  text-align: center; margin: auto}
+.container7{  text-align: center; margin: auto}
+.container8{  text-align: center; margin: auto}
+.container9{  text-align: center; margin: auto}
+.container10{ width: fit-content; margin: auto;}
+.container11{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+.btn{
+  border-radius:5px;
+  border: 1px solid #F0F0F0;
+  background: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  position:relative;
+  cursor:pointer;
+  overflow: hidden;
+  color: #2980b9;
+  text-shadow: 2px 2px black;
+  }
+  .btn:hover{
+      text-shadow: 4px 4px black;
+  }
+  .field{
+      border-radius:15px;
+      border: 1px solid #F0F0F0;
+      background:none;
+  }
+.leg{
+  font-size: 15px;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align:left;
+  color: #2980b9;
+  text-shadow: 3px 3px black;
+  }
+
+html {
+    background-color: #213555;
+}
+
+.title {
+      color: #fff;
+      text-align: center;
+      font-family:'Times New Roman', Times, serif;
+      font-weight: 300;
+      font-size: 350%;
+      letter-spacing:10px;
+      text-shadow: 3px 3px black;
+
+}
